@@ -1,0 +1,14 @@
+//---------------------------------------------------------------------------
+//
+// Name:        piano_arduinoApp.rc
+// Author:      Fernando Alvarado
+// Created:     5/25/2019 10:10:53 PM
+// Description: 
+//
+//---------------------------------------------------------------------------
+
+#ifdef _WIN64
+#define WX_CPU_AMD64
+#endif
+
+#include <wx/msw/wx.rc>

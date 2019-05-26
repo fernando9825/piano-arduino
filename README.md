@@ -11,3 +11,11 @@ Para poder ejecutar el proyecto realizar los siguientes pasos:
 
 + Una vez satisfechos todos los pasos, ejecutar :3
 
+# Alternativa 2 wxDevC++
+
++ Descargar wxDevC++ de [aquí](https://sourceforge.net/projects/wxdsgn-portable/files/latest/download) es una versión portable, así que ojo con donde lo descomprimen
+
++ Abrir el proyecto piano_arduino que está en la carpeta wxDevCPianoArduino de este repositorio
+
++ C0d3 :3
+

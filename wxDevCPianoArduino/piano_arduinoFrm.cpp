@@ -35,6 +35,9 @@ BEGIN_EVENT_TABLE(piano_arduinoFrm,wxFrame)
 	////Manual Code End
 	
 	EVT_CLOSE(piano_arduinoFrm::OnClose)
+	EVT_MENU(ID_MNU_CANCI_N1_1010, piano_arduinoFrm::cancion1Click)
+	EVT_MENU(ID_MNU_MENUITEM4_1012, piano_arduinoFrm::cancion2Click)
+	EVT_MENU(ID_MNU_CANCI_N3_1013, piano_arduinoFrm::cancion3Click)
 	EVT_BUTTON(ID_SI,piano_arduinoFrm::SiClick)
 	EVT_BUTTON(ID_LA,piano_arduinoFrm::LaClick)
 	EVT_BUTTON(ID_SOL,piano_arduinoFrm::SolClick)
@@ -94,6 +97,14 @@ void piano_arduinoFrm::CreateGUIControls()
 	Si = new wxButton(this, ID_SI, _("Si"), wxPoint(515, 10), wxSize(75, 273), 0, wxDefaultValidator, _("Si"));
 	WxBoxSizer1->Add(Si, 0, wxALIGN_CENTER | wxALL, 5);
 
+	WxMenuBar1 = new wxMenuBar();
+	wxMenu *ID_MNU_MENUITEM1_1009_Mnu_Obj = new wxMenu();
+	ID_MNU_MENUITEM1_1009_Mnu_Obj->Append(ID_MNU_CANCI_N1_1010, _("Canción 1"), _(""), wxITEM_NORMAL);
+	ID_MNU_MENUITEM1_1009_Mnu_Obj->Append(ID_MNU_MENUITEM4_1012, _("Canción 2"), _(""), wxITEM_NORMAL);
+	ID_MNU_MENUITEM1_1009_Mnu_Obj->Append(ID_MNU_CANCI_N3_1013, _("Canción 3"), _(""), wxITEM_NORMAL);
+	WxMenuBar1->Append(ID_MNU_MENUITEM1_1009_Mnu_Obj, _("Canciones DEMO"));
+	SetMenuBar(WxMenuBar1);
+
 	SetTitle(_("Piano Arduino UES-FMO"));
 	SetIcon(piano_arduinoFrm_frmNewForm_XPM);
 	
@@ -107,7 +118,7 @@ void piano_arduinoFrm::CreateGUIControls()
 	// todo el codigo del main va aqui
     // hacer un bucle de tres intentos mientras se conecta el arduino
     int intentos = 0;
-    bool puertoInvalido = true;
+    bool puertoInvalido = false;
     
     // variables del mensaje input
     const wxString message = "¿Cuál es el puerto?";
@@ -227,4 +238,39 @@ void piano_arduinoFrm::SiClick(wxCommandEvent& event)
 {
 	// insert your code here
 	wxMessageBox( wxT("Si") );
+}
+
+/*
+ * Mnucancin11012Click
+ */
+void piano_arduinoFrm::Mnucancin11012Click(wxCommandEvent& event)
+{
+	// insert your code here
+}
+
+/*
+ * cancion1Click
+ */
+void piano_arduinoFrm::cancion1Click(wxCommandEvent& event)
+{
+	// insert your code here
+	wxMessageBox("Poner el codigo de la canción 1 aquí");
+}
+
+/*
+ * cancion2Click
+ */
+void piano_arduinoFrm::cancion2Click(wxCommandEvent& event)
+{
+	// insert your code here
+		wxMessageBox("Poner el codigo de la canción 2 aquí");
+}
+
+/*
+ * cancion3Click
+ */
+void piano_arduinoFrm::cancion3Click(wxCommandEvent& event)
+{
+	// insert your code here
+		wxMessageBox("Poner el codigo de la canción 3 aquí");
 }

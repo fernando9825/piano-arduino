@@ -1,6 +1,10 @@
 
 #include "SerialPort.h"
 
+// constructor vacio
+SerialPort::SerialPort(){
+    } 
+
 SerialPort::SerialPort(int puerto)
 {
     

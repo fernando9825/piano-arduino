@@ -23,6 +23,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "SerialPort.h"
+// para crear un nuevo hilo
+#include <wx/thread.h>
 
 //----------------------------------------------------------------------------
 // piano_arduinoFrm
@@ -63,6 +65,7 @@ piano_arduinoFrm::~piano_arduinoFrm()
 
     //cadena para ingresar 
     char incomingData[MAX_LOGINTUD_DATOS];	
+    SerialPort arduinoGlobal;
 
 void piano_arduinoFrm::CreateGUIControls()
 {
@@ -118,7 +121,7 @@ void piano_arduinoFrm::CreateGUIControls()
 	// todo el codigo del main va aqui
     // hacer un bucle de tres intentos mientras se conecta el arduino
     int intentos = 0;
-    bool puertoInvalido = false;
+    bool puertoInvalido = true;
     
     // variables del mensaje input
     const wxString message = "¿Cuál es el puerto?";
@@ -140,8 +143,9 @@ void piano_arduinoFrm::CreateGUIControls()
     if (arduino.estaConectado()){
          	wxMessageBox( "Se ha establecido conexión con el arduino" );
          	puertoInvalido = false;
+         	arduinoGlobal = arduino;
              }
-    else 	{
+    else {
         wxMessageBox( "Error, verifica si es el puerto correcto" );
         intentos++;
     }
@@ -152,14 +156,17 @@ void piano_arduinoFrm::CreateGUIControls()
     }
     
     // si todo va bien, el arduino esta conectado y se ejecuta el while
-     while (arduino.estaConectado()){
+    // estaba pensando y no es necesario hacer este ciclo
+     /*while (arduino.estaConectado()){
     
         int read_result = arduino.leerPuertoSerie(incomingData, MAX_LOGINTUD_DATOS);
         //imprime 
         puts(incomingData);
         //espera
         Sleep(10);
-    }   
+    }  */
+    // solamente hay que comprobar en cada tecla si el arduino esta conectado 
+    // revisar codigo en el listener del boton DO
          
     } while(puertoInvalido);
     
@@ -184,6 +191,19 @@ void piano_arduinoFrm::DoClick(wxCommandEvent& event)
 {
 	// insert your code here
 	wxMessageBox( wxT("Do") );
+	
+	// usar este codigo en los botones necesarios (de ser posible hacer una funcion para evitar problemas)
+	if(arduinoGlobal.estaConectado()){
+    
+        int read_result = arduinoGlobal.leerPuertoSerie(incomingData, MAX_LOGINTUD_DATOS);
+        //imprime 
+        puts(incomingData);
+        //espera
+        Sleep(10);
+        
+    } else{
+        wxMessageBox( "Arduino no está conectado" );
+    }
 }
 
 /*

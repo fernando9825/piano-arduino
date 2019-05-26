@@ -19,6 +19,7 @@ private:
     COMSTAT estado;
     DWORD errores;
 public:
+    SerialPort();
     SerialPort(int puerto);
     ~SerialPort();
 

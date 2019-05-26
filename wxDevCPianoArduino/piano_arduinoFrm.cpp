@@ -17,6 +17,13 @@
 #include "C:/Users/Fernando9825/Documents/wxDevCPianoArduino/Images/piano_arduinoFrm_frmNewForm_XPM.xpm"
 ////Header Include End
 
+//libreria serialPort
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "SerialPort.h"
+
 //----------------------------------------------------------------------------
 // piano_arduinoFrm
 //----------------------------------------------------------------------------
@@ -47,6 +54,12 @@ piano_arduinoFrm::piano_arduinoFrm(wxWindow *parent, wxWindowID id, const wxStri
 piano_arduinoFrm::~piano_arduinoFrm()
 {
 }
+
+/*puerto serie*/
+    //char *port_name; // adelante se pregunta por este valor
+
+    //cadena para ingresar 
+    char incomingData[MAX_LOGINTUD_DATOS];	
 
 void piano_arduinoFrm::CreateGUIControls()
 {
@@ -90,6 +103,61 @@ void piano_arduinoFrm::CreateGUIControls()
 	Center();
 	
 	////GUI Items Creation End
+	
+	// todo el codigo del main va aqui
+    // hacer un bucle de tres intentos mientras se conecta el arduino
+    int intentos = 0;
+    bool puertoInvalido = true;
+    
+    // variables del mensaje input
+    const wxString message = "¿Cuál es el puerto?";
+    const wxString caption=wxGetTextFromUserPromptStr;
+    const wxString default_value="";
+    wxWindow *parent=NULL;
+    int x=wxDefaultCoord;
+    int y=wxDefaultCoord; 
+    bool centre=true;
+    do {
+        // solicitando el puerto al ususario    
+    wxString puerto = wxGetTextFromUser (message, caption, default_value, NULL, x, y, centre);
+    int numPuerto;
+    numPuerto = wxAtoi(puerto);
+    
+    //wxMessageBox(wxString(puerto)); // este es solo comprobacion del valor ingresado
+    
+    SerialPort arduino(numPuerto);
+    if (arduino.estaConectado()){
+         	wxMessageBox( "Se ha establecido conexión con el arduino" );
+         	puertoInvalido = false;
+             }
+    else 	{
+        wxMessageBox( "Error, verifica si es el puerto correcto" );
+        intentos++;
+    }
+  
+    if(intentos == 3) {
+        wxMessageBox( "Se han superado los intentos se conexión, revisar todo y volver a intentarlo" );
+        break;
+    }
+    
+    // si todo va bien, el arduino esta conectado y se ejecuta el while
+     while (arduino.estaConectado()){
+    
+        int read_result = arduino.leerPuertoSerie(incomingData, MAX_LOGINTUD_DATOS);
+        //imprime 
+        puts(incomingData);
+        //espera
+        Sleep(10);
+    }   
+         
+    } while(puertoInvalido);
+    
+    // si todo sale mal, matar el proceso
+    if(intentos == 3){
+        Destroy();
+    }
+     
+    
 }
 
 void piano_arduinoFrm::OnClose(wxCloseEvent& event)

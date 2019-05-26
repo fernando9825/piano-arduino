@@ -10,7 +10,8 @@
 #include "piano_arduinoApp.h"
 #include "piano_arduinoFrm.h"
 
-IMPLEMENT_APP(piano_arduinoFrmApp)
+
+IMPLEMENT_APP(piano_arduinoFrmApp);
 
 bool piano_arduinoFrmApp::OnInit()
 {

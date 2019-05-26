@@ -1,14 +1,14 @@
 # Project: piano_arduino
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ IDE 7.4.2.569 on 25/05/19 22:32
+# Makefile created by wxDev-C++ IDE 7.4.2.569 on 26/05/19 13:51
 
 WXLIBNAME = wxmsw29u
 CPP       = g++.exe
 CC        = gcc.exe
 WINDRES   = "windres.exe"
-OBJ       = Objects/MingW/piano_arduinoApp.o Objects/MingW/piano_arduinoFrm.o Objects/MingW/piano_arduino_private.res
-LINKOBJ   = "Objects/MingW/piano_arduinoApp.o" "Objects/MingW/piano_arduinoFrm.o" Objects/MingW/piano_arduino_private.res
+OBJ       = Objects/MingW/piano_arduinoApp.o Objects/MingW/piano_arduinoFrm.o Objects/MingW/SerialPort.o Objects/MingW/piano_arduino_private.res
+LINKOBJ   = "Objects/MingW/piano_arduinoApp.o" "Objects/MingW/piano_arduinoFrm.o" "Objects/MingW/SerialPort.o" Objects/MingW/piano_arduino_private.res
 LIBS      = -L"C:/Users/Fernando9825/Downloads/wxDevCppP7-64b/App/devcpp/lib/wx/gcc_lib" -L"C:/Users/Fernando9825/Downloads/wxDevCppP7-64b/App/devcpp/lib" -L"C:/Users/Fernando9825/Downloads/wxDevCppP7-64b/App/devcpp/MinGW32/lib" -mwindows -l$(WXLIBNAME) -l$(WXLIBNAME)_gl -lwxscintilla -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregexu -lwxexpat -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  
 INCS      = -I"C:/Users/Fernando9825/Downloads/wxDevCppP7-64b/App/devcpp/MinGW32/include"
 CXXINCS   = -I"C:/Users/Fernando9825/Downloads/wxDevCppP7-64b/App/devcpp/MinGW32/include" -I"C:/Users/Fernando9825/Downloads/wxDevCppP7-64b/App/devcpp/" -I"C:/Users/Fernando9825/Downloads/wxDevCppP7-64b/App/devcpp/include/common" -I"C:/Users/Fernando9825/Downloads/wxDevCppP7-64b/App/devcpp/include"
@@ -39,8 +39,11 @@ $(BIN): $(OBJ)
 Objects/MingW/piano_arduinoApp.o: $(GLOBALDEPS) piano_arduinoApp.cpp piano_arduinoApp.h piano_arduinoFrm.h
 	$(CPP) -c piano_arduinoApp.cpp -o Objects/MingW/piano_arduinoApp.o $(CXXFLAGS)
 
-Objects/MingW/piano_arduinoFrm.o: $(GLOBALDEPS) piano_arduinoFrm.cpp piano_arduinoFrm.h Images/piano_arduinoFrm_frmNewForm_XPM.xpm
+Objects/MingW/piano_arduinoFrm.o: $(GLOBALDEPS) piano_arduinoFrm.cpp piano_arduinoFrm.h ../../../../Documents/wxDevCPianoArduino/Images/piano_arduinoFrm_frmNewForm_XPM.xpm SerialPort.h
 	$(CPP) -c piano_arduinoFrm.cpp -o Objects/MingW/piano_arduinoFrm.o $(CXXFLAGS)
+
+Objects/MingW/SerialPort.o: $(GLOBALDEPS) SerialPort.cpp SerialPort.h
+	$(CPP) -c SerialPort.cpp -o Objects/MingW/SerialPort.o $(CXXFLAGS)
 
 Objects/MingW/piano_arduino_private.res: Objects/MingW/piano_arduino_private.rc piano_arduinoApp.rc 
 	$(WINDRES) --input-format=rc -o Objects/MingW/piano_arduino_private.res $(RCINCS) Objects/MingW/PIANO_~1.RC -O coff

@@ -21,7 +21,7 @@
     <ClCompile Include="GUI\GUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Controlador.cpp">
+    <ClCompile Include="Controlador\SerialPort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +29,7 @@
     <ClInclude Include="GUI\GUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Controlador.h">
+    <ClInclude Include="Controlador\SerialPort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

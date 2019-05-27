@@ -125,7 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Controlador.cpp" />
+    <ClCompile Include="Controlador\SerialPort.cpp" />
     <ClCompile Include="GUI\GUI.cpp" />
     <ClCompile Include="Main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Fernando9825\source\repos\piano_arduino\piano_arduino;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -133,7 +133,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Controlador.h" />
+    <ClInclude Include="Controlador\SerialPort.h" />
     <ClInclude Include="GUI\GUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

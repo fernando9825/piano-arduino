@@ -10,10 +10,29 @@
 
 #include "GUI.h"
 
+
 ///////////////////////////////////////////////////////////////////////////
 
 FormPrincipal::FormPrincipal(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) : wxFrame(parent, id, title, pos, size, style)
 {
+	
+	// intentar conectarse al arduino
+	arduino = new SerialPort(port_name);
+	if (arduino->estaConectado())
+	{
+		wxMessageBox("Arduino está conectado");
+	}
+	else {
+		wxMessageBox("No se ha detectado el arduino");
+		Destroy(); // matar proceso
+	}
+
+	// continuar con la creacion de los elementos
+
+
+
+
+
 	this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 
 	wxBoxSizer* bSizer1;
@@ -117,6 +136,8 @@ FormPrincipal::FormPrincipal(wxWindow* parent, wxWindowID id, const wxString& ti
 	CancionesDEMO->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(FormPrincipal::m_menuItemPiratesOfTheCaribbeanOnMenuSelection), this, m_menuItemPiratesOfTheCaribbean->GetId());
 	CancionesDEMO->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(FormPrincipal::m_menuItemStarWarsOnMenuSelection), this, m_menuItemStarWars->GetId());
 	CancionesDEMO->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(FormPrincipal::m_menuItemDesarrolladoresOnMenuSelection), this, m_menuItemDesarrolladores->GetId());
+
+	
 }
 
 FormPrincipal::~FormPrincipal()

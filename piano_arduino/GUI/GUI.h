@@ -24,11 +24,15 @@
 #include <wx/frame.h>
 
 //#include <string.h>
-
 ///////////////////////////////////////////////////////////////////////////
+#include "../Controlador/SerialPort.h"
 
 #define wxFormPrincipal 1000
 const wxString statusBarDefaultMessage = wxT("Piano en Arduino Universidad de El Salvador (FMO)");
+
+
+
+
 ///////////////////////////////////////////////////////////////////////////////
 /// Class FormPrincipal
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,6 +41,13 @@ class FormPrincipal : public wxFrame
 private:
 	void teclado(wxKeyEvent & event);
 	void tecladoSoltar(wxKeyEvent & event);
+	SerialPort *arduino;
+	/*puerto serie*/
+	const char *port_name = "\\\\.\\COM3";
+
+	//cadena para ingresar 
+	char incomingData[MAX_LOGINTUD_DATOS];
+	
 
 protected:
 	wxMenuBar* m_menubar3;
